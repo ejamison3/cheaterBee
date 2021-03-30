@@ -1,7 +1,7 @@
 import './App.css';
 import Letters from './js/letters.js';
 import RequiredLetter from './js/requiredLetter.js';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
 
@@ -15,9 +15,9 @@ function FindWordsButton() {
     <Row>
       <label htmlFor="minWordLength">Minimum Word Length</label>
       <select name="minWordLength" id="minWordLength">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(x => {
+        {Array.from(Array(10).keys()).map(x => {
           return(
-            <option value={x}>{x}</option>
+            <option value={x+1}>{x+1}</option>
           )
         })}
       </select>
@@ -32,6 +32,7 @@ function FindWordsButton() {
 function App() {
   const [reqLetter, setReqLetter] = React.useState(null)
   const [letters,setLetters] = React.useState([""])
+
   return (
     <Container fluid>
       <RequiredLetter 
