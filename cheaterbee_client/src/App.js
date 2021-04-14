@@ -3,9 +3,10 @@ import Letters from './js/letters.js';
 import RequiredLetter from './js/requiredLetter.js';
 import MinWordLength from './js/minWordLength.js';
 import FindWordsButton from './js/findWordsButton.js';
+import EmailWordsButton from './js/emailWordsButton.js';
 import Results from './js/results.js';
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 
 
@@ -27,13 +28,20 @@ const App = () => {
           setLetters={setLetters}
         />
         <MinWordLength />
-        <FindWordsButton
-          letters={letters}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-        />
+        <Row>
+          <Col md={{span: 3, offset: 1}}>
+            <FindWordsButton
+              letters={letters}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              />
+          </Col>
+          <Col md={{span: 3, offset: 1}}>
+            <EmailWordsButton/>
+          </Col>
+        </Row>
         <Results 
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}

@@ -2,4 +2,4 @@
 */env
 */.env
 secret.sh
-sendgrid.env
+*/sendgrid.env

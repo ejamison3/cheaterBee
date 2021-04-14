@@ -1,6 +1,5 @@
-import React, { useHistory } from 'react';
+import React from 'react';
 import { Row, Button, Alert } from 'react-bootstrap';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 
 const FindWordsButton = (prop) => {
@@ -23,7 +22,8 @@ const FindWordsButton = (prop) => {
 
     if (reqChar === "" || otherChars === ""){
       console.log("should be showing alert");
-      <Alert variant="danger">Please enter a Required Letter and one or more Additional allowed letters!</Alert>;
+      // <Alert variant="danger">Please enter a Required Letter and one or more Additional allowed letters!</Alert>;
+      alert("Enter a required letter and one or more additional letters!")
       return;
     }
     
