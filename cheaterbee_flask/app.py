@@ -1,13 +1,59 @@
 from flask import Flask, request, jsonify
 # from flask_cors import CORS
 import util
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 app = Flask(__name__)
 # CORS(app)
 
-@app.route('/hello')
-def say_hello_world():
-    return {'result': "Hello World"}
+@app.route('/sendEmail', methods=['POST'])
+def send_email():
+    """Sends email to user with words that meet criteria"""
+
+    req = request.get_json()
+    print(req)
+    email = req["email"]
+    req_char = req["reqChar"]
+    other_chars = req["otherChars"]
+    min_word_length = int(req["minWordLength"])
+
+    email_response = {
+        'error': None,
+        'words': [],
+    }
+
+    words_list = util.find_words(req_char, other_chars, min_word_length)
+    print(f'words_list: {words_list}')
+    status = 200
+
+    # if words are found, try to send email
+    if len(words_list) > 0:
+        message = Mail(
+            from_email='cheaterbeewords@gmail.com',
+            to_emails=email,
+            subject='Sending with Twilio SendGrid is Fun',
+            html_content='<strong>and easy to do anywhere, even with Python</strong>'
+        )
+        print(message)
+        try:
+            sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+            response = sg.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+        except Exception as e:
+            print(e.message)
+            # email_response['error'] = e
+            status = 200
+    else:
+        email_response['error'] = 'No words found'
+        status = 204
+
+    # if no words found, do not send email (indicate this in front end)    
+
+    return(jsonify(email_response), status)
 
 
 @app.route('/words', methods=['POST'])
@@ -15,7 +61,6 @@ def get_words():
     """Get words that match input criteria"""
 
     req = request.get_json()
-    print(req)
     req_char = req["reqChar"]
     other_chars = req["otherChars"]
     min_word_length = int(req["minWordLength"])
