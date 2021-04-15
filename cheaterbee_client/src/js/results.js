@@ -29,7 +29,7 @@ const Results = (prop) => {
         }
       })
     }
-  }, [query]);
+  }, [prop.searchQuery]);
 
 
   if (prop.isLoading){

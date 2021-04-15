@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Button, Alert } from 'react-bootstrap';
+import { Row, Button } from 'react-bootstrap';
 
 
 const FindWordsButton = (prop) => {

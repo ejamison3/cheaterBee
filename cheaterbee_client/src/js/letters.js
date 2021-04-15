@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 
 const Letters = (prop) => {
   const letters = prop.letters

@@ -1,5 +1,5 @@
 import React  from 'react';
-import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 
 const EmailRequestPopup = (prop) => {
   const [userEmail, setUserEmail] = React.useState(null);
@@ -72,7 +72,7 @@ const EmailRequestPopup = (prop) => {
           <Container>
             <Row>
               <Col>
-              {(userEmail && userEmail.indexOf('@') != -1 && userEmail.indexOf('.') != -1)
+              {(userEmail && userEmail.indexOf('@') !== -1 && userEmail.indexOf('.') !== -1)
                 ? 
                   <Button onClick={sendEmail}>
                     Send Email
