@@ -9,7 +9,7 @@ const FindWordsButton = (prop) => {
 
     const minWordLength = document.getElementById('minWordLength').value
 
-    if (prop.reqLetter === "" || prop.letters.length == 0){
+    if (prop.reqLetter === "" || prop.letters.length === 0){
       console.log("should be showing alert");
       // <Alert variant="danger">Please enter a Required Letter and one or more Additional allowed letters!</Alert>;
       alert("Enter a required letter and one or more additional letters!")

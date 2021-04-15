@@ -1,4 +1,5 @@
 import React  from 'react';
+import API_URL from './constants.js';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 
 const EmailRequestPopup = (prop) => {
@@ -14,7 +15,7 @@ const EmailRequestPopup = (prop) => {
       'email': userEmail,
     }
 
-    fetch('api/sendEmail', {
+    fetch(API_URL + 'api/sendEmail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

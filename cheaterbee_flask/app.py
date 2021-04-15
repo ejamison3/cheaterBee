@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify
-# from flask_cors import CORS
+from flask_cors import CORS
 import util
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 app = Flask(__name__)
-# CORS(app)
+CORS(app)
 
 @app.route('/api/sendEmail', methods=['POST'])
 def send_email():

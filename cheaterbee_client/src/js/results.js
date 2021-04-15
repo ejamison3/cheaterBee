@@ -1,11 +1,12 @@
 import React from 'react';
+import API_URL from './constants.js';
 
 const Results = (prop) => {
   const query = prop.searchQuery;
 
   React.useEffect(() => {
     if (query != null){
-      fetch('api/words', {
+      fetch(API_URL + 'api/words', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
