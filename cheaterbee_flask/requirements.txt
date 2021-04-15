@@ -1,0 +1,12 @@
+click==7.1.2
+Flask==1.1.2
+Flask-Cors==3.0.10
+itsdangerous==1.1.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+python-dotenv==0.16.0
+python-http-client==3.3.2
+sendgrid==6.6.0
+six==1.15.0
+starkbank-ecdsa==1.1.0
+Werkzeug==1.0.1
