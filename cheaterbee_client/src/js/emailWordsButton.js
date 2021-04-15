@@ -100,7 +100,7 @@ const EmailWordsButton = (prop) => {
     return (
       <div>
         <Button onClick={handleShow}>
-          Email Me Results
+          Email Me My Words!
         </Button>
         <EmailRequestPopup
           showEmailInput={showEmailInput}
