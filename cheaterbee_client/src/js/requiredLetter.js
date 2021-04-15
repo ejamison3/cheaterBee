@@ -3,10 +3,11 @@ import { Row } from 'react-bootstrap';
 
 const RequiredLetter = (prop) => {
   return (
-    <Row>
+    <Row className="justify-content-center">
       <label htmlFor="reqLetter">
         Required Letter
         <input 
+          className="ml-1"
           name="reqLetter" 
           id="reqLetter"
           minLength="1" 

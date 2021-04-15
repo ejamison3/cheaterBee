@@ -19,19 +19,32 @@ const App = () => {
 
   return (
       <Container fluid>
-        <div>
-          Enter a required letter and one or more additional letters to find words matching the criteria.
+        <div className="text-center">
+          <h1 className="text-primary">
+            Welcome to Cheater Bee!
+          </h1>
+          <h3>
+            Enter a required letter and one or more additional letters to find words matching the criteria.
+          </h3>
         </div>
-        <RequiredLetter 
-          reqLetter={reqLetter}
-          setReqLetter={setReqLetter}
-        />
-        <Letters 
-          letters={letters}
-          setLetters={setLetters}
-        />
-        <MinWordLength />
         <Row>
+          <Col md={4}>
+            <RequiredLetter 
+              reqLetter={reqLetter}
+              setReqLetter={setReqLetter}
+            />
+          </Col>
+          <Col md={4}>
+            <Letters 
+              letters={letters}
+              setLetters={setLetters}
+            />
+          </Col>
+          <Col md={4}>
+            <MinWordLength />
+          </Col>
+        </Row>
+        <Row className = "justify-content-center mt-3">
           <Col md={{span: 3, offset: 1}}>
             <FindWordsButton
               reqLetter={reqLetter}
