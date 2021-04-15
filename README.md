@@ -1,9 +1,9 @@
 # Cheater Bee
 ### Table of Contents
-[About Cheater Bee](#about)
-[How to Install and Run](#install)
-[Dictionary](#dictionary)
-[Other Cheater Bee Iterations](#iterations)
+[About Cheater Bee](#about)  
+[How to Install and Run](#install)  
+[Dictionary](#dictionary)  
+[Other Cheater Bee Iterations](#iterations)  
 
 ## <a name="about"></a>About Cheater Bee
 Cheater Bee is built with a flask Python backend and a React (using create-react-app) front end
