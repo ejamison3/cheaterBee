@@ -15,5 +15,5 @@ To start the frontend, go into the cheaterbee_client subdirectory and enter 'npm
 ## <a name="dictionary"></a>Dictionary
 The dictionary is the standard dictionary in a mac. It's pretty horrible. If you have access to a better dictionary (i.e., collection of words you want to search), then I highly recommend replacing the dictionary.txt file inside the cheaterbee_flask directory. Words inside this file should each be on a separate line.
 
-## <a name="iterations></a>Other Iterations
+## <a name="iterations"></a>Other Iterations
 The original cheater bee was a command line tool written in C. You can find it in my github under the name cheaterbee-cli. It's lovely. You should check it out.
