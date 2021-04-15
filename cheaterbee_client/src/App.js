@@ -19,6 +19,9 @@ const App = () => {
 
   return (
       <Container fluid>
+        <div>
+          Enter a required letter and one or more additional letters to find words matching the criteria.
+        </div>
         <RequiredLetter 
           reqLetter={reqLetter}
           setReqLetter={setReqLetter}
