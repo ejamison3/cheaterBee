@@ -23,9 +23,9 @@ const App = () => {
           <h1 className="text-primary">
             Welcome to Cheater Bee!
           </h1>
-          <h3>
+          <div className="text-primary text-center">
             Enter a required letter and one or more additional letters to find words matching the criteria.
-          </h3>
+          </div>
         </div>
         <Row>
           <Col md={4}>

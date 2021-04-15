@@ -46,8 +46,10 @@ const EmailRequestPopup = (prop) => {
           Enter your email address
         </Modal.Header>
         <Modal.Body>
+          <div>
+            An email will be sent for all words which:
+          </div>
           <ul>
-          An email will be sent for all words which:
             <li>{prop.reqLetter 
               ? "Contain the letter: " + prop.reqLetter
               : "Enter a required letter before sending an email request"}
