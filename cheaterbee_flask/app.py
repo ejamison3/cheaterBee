@@ -32,13 +32,13 @@ def send_email():
         message = Mail(
             from_email='cheaterbeewords@gmail.com',
             to_emails=email,
-            subject='Sending with Twilio SendGrid is Fun',
-            html_content='The following words are made up of the characters <strong>' +
+            subject='Cheater Bee Words',
+            html_content='''The following words are made up of the characters <strong>''' +
              ','.join(other_chars) + 
              '</strong> and contain your required character <strong>' + 
-             req_char + '</strong>: \n' +
+             req_char + ':</strong>: <div>' +
              '\n'.join(words_list) +
-             '\n\nThanks for using CheaterBee!!'
+             '</div>Thanks for using CheaterBee!!'''
         )
         print(message)
         try:
