@@ -7,20 +7,9 @@ const FindWordsButton = (prop) => {
   const updateQuery = (evt) => {
     evt.preventDefault();
 
-    const reqChar = document.getElementById('reqLetter').value
     const minWordLength = document.getElementById('minWordLength').value
 
-    // get required letters
-    let otherChars = "";
-    let currChar = document.getElementById('letter0');
-    let currNum = 1;
-    while (currChar){
-      otherChars = otherChars + currChar.value;
-      currChar = document.getElementById('letter'+currNum);
-      currNum ++;
-    }
-
-    if (reqChar === "" || otherChars === ""){
+    if (prop.reqLetter === "" || prop.letters.length == 0){
       console.log("should be showing alert");
       // <Alert variant="danger">Please enter a Required Letter and one or more Additional allowed letters!</Alert>;
       alert("Enter a required letter and one or more additional letters!")
@@ -29,21 +18,26 @@ const FindWordsButton = (prop) => {
     
     // create empty structure
     let query = {
-      'reqChar': reqChar,
-      'otherChars': otherChars,
+      'reqChar': prop.reqLetter,
+      'otherChars': prop.letters,
       'minWordLength': minWordLength,
     }
     prop.setSearchQuery(query)
     prop.setIsLoading(true)
   }
-  return(
-    <Row>
-      <Button onClick={updateQuery}>
-        Find all of the words
-      </Button>
-    </Row>
-  )
+  if (prop.reqLetter != null && prop.letters.length > 0){
+    return(
+      <Row>
+        <Button onClick={updateQuery}>
+          Find all of the words
+        </Button>
+      </Row>
+    )
+  }else{
+    return(
+      <div/>
+    )
+  }
 }
 
-
-  export default FindWordsButton;
+export default FindWordsButton;

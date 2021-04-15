@@ -8,7 +8,7 @@ from sendgrid.helpers.mail import Mail
 app = Flask(__name__)
 # CORS(app)
 
-@app.route('/sendEmail', methods=['POST'])
+@app.route('/api/sendEmail', methods=['POST'])
 def send_email():
     """Sends email to user with words that meet criteria"""
 
@@ -25,7 +25,6 @@ def send_email():
     }
 
     words_list = util.find_words(req_char, other_chars, min_word_length)
-    print(f'words_list: {words_list}')
     status = 200
 
     # if words are found, try to send email
@@ -34,7 +33,12 @@ def send_email():
             from_email='cheaterbeewords@gmail.com',
             to_emails=email,
             subject='Sending with Twilio SendGrid is Fun',
-            html_content='<strong>and easy to do anywhere, even with Python</strong>'
+            html_content='The following words are made up of the characters <strong>' +
+             ','.join(other_chars) + 
+             '</strong> and contain your required character <strong>' + 
+             req_char + '</strong>: \n' +
+             '\n'.join(words_list) +
+             '\n\nThanks for using CheaterBee!!'
         )
         print(message)
         try:
@@ -56,7 +60,7 @@ def send_email():
     return(jsonify(email_response), status)
 
 
-@app.route('/words', methods=['POST'])
+@app.route('/api/words', methods=['POST'])
 def get_words():
     """Get words that match input criteria"""
 

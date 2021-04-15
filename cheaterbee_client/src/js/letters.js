@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const Letters = (prop) => {
   const letters = prop.letters
@@ -38,8 +38,8 @@ const Letters = (prop) => {
                 value={letter}
                 onChange={e => updateLetter(e, index)}
               />
-              {letters.length !== 1 && <button onClick={() => removeLetter(index)}>Remove</button>}
-              {letters.length -1 === index && <button onClick={addLetter}>Add</button>}
+              {letters.length !== 1 && <button className="with-margin" onClick={() => removeLetter(index)}>Remove</button>}
+              {letters.length -1 === index && <button className="with-margin" onClick={addLetter}>Add</button>}
             </div>
         )
       })}

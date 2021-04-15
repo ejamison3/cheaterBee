@@ -5,7 +5,7 @@ const Results = (prop) => {
 
   React.useEffect(() => {
     if (query != null){
-      fetch('words', {
+      fetch('api/words', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

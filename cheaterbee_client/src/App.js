@@ -31,6 +31,7 @@ const App = () => {
         <Row>
           <Col md={{span: 3, offset: 1}}>
             <FindWordsButton
+              reqLetter={reqLetter}
               letters={letters}
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
@@ -39,7 +40,10 @@ const App = () => {
               />
           </Col>
           <Col md={{span: 3, offset: 1}}>
-            <EmailWordsButton/>
+            <EmailWordsButton
+              reqLetter={reqLetter}
+              letters={letters}
+            />
           </Col>
         </Row>
         <Results 

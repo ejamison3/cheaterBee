@@ -1,19 +1,43 @@
 import React  from 'react';
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
 
-const EmailWordsButton = (prop) => {
-  const [showEmailInput, setShowEmailInput] = React.useState(false)
+const EmailRequestPopup = (prop) => {
+  const [userEmail, setUserEmail] = React.useState(null);
+  const minWordLength = document.getElementById('minWordLength').value
 
-  const handleShow = () => setShowEmailInput(true)
-  const handleCancel = () => setShowEmailInput(false)
+  const handleCancel = () => prop.setShowEmailInput(false);
+  const sendEmail = () => {
+    const emailQuery = {
+      'reqChar': prop.reqLetter,
+      'otherChars': prop.letters,
+      'minWordLength': minWordLength,
+      'email': userEmail,
+    }
+
+    fetch('api/sendEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(emailQuery)
+    })
+    .then(response => {
+      if (!response.ok){
+        console.log('Error sending email has occurred');
+      }else if (response.status === 204){
+        console.log('Email not sent because no words found');
+      }else{
+        response.json().then(data => {
+          console.log('email sent');
+          handleCancel();
+        })
+      }
+    })
+  }
 
   return (
-    <div>
-      <Button onClick={handleShow}>
-        Email Me Results
-      </Button>
-      <Modal
-        show={showEmailInput}
+    <Modal
+        show={prop.showEmailInput}
         backdrop="static"
         keyboard={false}
       >
@@ -23,21 +47,38 @@ const EmailWordsButton = (prop) => {
         <Modal.Body>
           <ul>
           An email will be sent for all words which:
-            <li>Contain the letter {document.getElementById('reqLetter').value}</li>
-            <li>Contain the other letters you entered</li>
+            <li>{prop.reqLetter 
+              ? "Contain the letter: " + prop.reqLetter
+              : "Enter a required letter before sending an email request"}
+            </li>
+            <li>{prop.letters 
+              ? "And all other letters are as follows: " + prop.letters
+              : "Enter at least one other letter which may be in acceptable words"}
+            </li>
           </ul>
           <label htmlFor="email">
-            <input type="email" id="userEmail" name="userEmail">
-            </input>
+            Email:
+            <input 
+              type="email" 
+              id="userEmail" 
+              name="userEmail"
+              paceholder="Enter your email"
+              size="30"
+              onChange={e => setUserEmail(e.target.value)}
+            />
           </label>
         </Modal.Body>
         <Modal.Footer>
           <Container>
             <Row>
               <Col>
-                <Button>
-                  Send Email
-                </Button>
+              {(userEmail && userEmail.indexOf('@') != -1 && userEmail.indexOf('.') != -1)
+                ? 
+                  <Button onClick={sendEmail}>
+                    Send Email
+                  </Button>
+                : ""
+              }
               </Col>
               <Col>
                 <Button onClick={handleCancel}>
@@ -47,12 +88,33 @@ const EmailWordsButton = (prop) => {
             </Row>
           </Container>
         </Modal.Footer>
-
-
       </Modal>
-    </div>
   )
+}
 
+const EmailWordsButton = (prop) => {
+  const [showEmailInput, setShowEmailInput] = React.useState(false);
+
+  const handleShow = () => setShowEmailInput(true)
+  if (prop.reqLetter != null && prop.letters.length > 0){
+    return (
+      <div>
+        <Button onClick={handleShow}>
+          Email Me Results
+        </Button>
+        <EmailRequestPopup
+          showEmailInput={showEmailInput}
+          setShowEmailInput={setShowEmailInput}
+          reqLetter={prop.reqLetter}
+          letters={prop.letters}
+        />
+      </div>
+    )
+  }else{
+    return (
+      <div/>
+    )
+  }
 }
 
 export default EmailWordsButton;
