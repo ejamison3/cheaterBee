@@ -3,6 +3,10 @@
 def find_words(req_char, other_chars, min_length=1):
     """returns list of words matching criteria in dictionary file"""
     
+    # make case insensitive
+    req_char = req_char.lower()
+    other_chars = other_chars.lower()
+
     dict_file = open("dictionary.txt")
     words = []
 
