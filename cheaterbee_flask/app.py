@@ -70,13 +70,12 @@ def get_words():
     min_word_length = int(req["minWordLength"])
 
     words_list = util.find_words(req_char, other_chars, min_word_length)
-    print(f'words_list: {words_list}')
+    
     words_response = {
         'error': None,
         'words': words_list,
     }
 
-    print(f'words_response: {words_response}')
     status_code = 200 if len(words_list) > 0 else 204
 
     return (jsonify(words_response), status_code)
