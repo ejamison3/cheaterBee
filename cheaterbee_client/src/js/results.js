@@ -46,6 +46,12 @@ const Results = (prop) => {
           No words meet your criteria
         </div>
       )
+    }else if (prop.searchResponse === 0){
+      return (
+        <div>
+          There was an error with your request. 
+        </div>
+      )
     }else{
       const wordList = prop.searchResponse.words
       const words = []
