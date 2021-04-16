@@ -16,7 +16,7 @@ def send_email():
     print(req)
     email = req["email"]
     req_char = req["reqChar"]
-    other_chars = req["otherChars"]
+    other_chars = ''.join(req["otherChars"])
     min_word_length = int(req["minWordLength"])
 
     email_response = {
@@ -66,7 +66,7 @@ def get_words():
 
     req = request.get_json()
     req_char = req["reqChar"]
-    other_chars = req["otherChars"]
+    other_chars = ''.join(req["otherChars"])
     min_word_length = int(req["minWordLength"])
 
     words_list = util.find_words(req_char, other_chars, min_word_length)
